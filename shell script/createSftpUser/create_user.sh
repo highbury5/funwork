@@ -74,7 +74,7 @@ do
   usergroup=`echo $line|awk '{print $2}'`
   userpath=`echo $line|awk '{print $3}'`
   userpath=$perfix$userpath
-  password=`echo $line|awk '{print $4}'`
+  password=`echo $line|awk '{print $4}'|base64 -d|openssl passwd -stdin`
   id $username >& /dev/null
   if [ $? -eq 0 ] ;then 
      delUser
